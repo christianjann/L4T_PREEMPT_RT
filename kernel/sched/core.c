@@ -1142,7 +1142,8 @@ unsigned long wait_task_inactive(struct task_struct *p, long match_state)
 		 */
 		while (task_running(rq, p)) {
 			if (match_state && unlikely(cpu_relaxed_read_long
-				(&(p->state)) != match_state))
+				(&(p->state)) != match_state)
+				&& unlikely(p->saved_state != match_state))
 				return 0;
 			cpu_read_relax();
 		}
@@ -7536,8 +7537,8 @@ void __might_sleep(const char *file, int line, int preempt_offset)
 	static unsigned long prev_jiffy;	/* ratelimiting */
 
 	rcu_sleep_check(); /* WARN_ON_ONCE() by default, no rate limit reqd. */
-	if ((preempt_count_equals(preempt_offset) && !irqs_disabled()) ||
-	    oops_in_progress)
+	if ((preempt_count_equals(preempt_offset) && !irqs_disabled()
+		&& !is_idle_task(current)) || oops_in_progress)
 		return;
 	if (system_state != SYSTEM_RUNNING &&
 	    (!__might_sleep_init_called || system_state != SYSTEM_BOOTING))

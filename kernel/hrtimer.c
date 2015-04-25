@@ -47,11 +47,13 @@
 #include <linux/sched/sysctl.h>
 #include <linux/sched/rt.h>
 #include <linux/timer.h>
+#include <linux/kthread.h>
 #include <linux/freezer.h>
 
 #include <asm/uaccess.h>
 
 #include <trace/events/timer.h>
+#include <trace/events/hist.h>
 
 /*
  * The timer bases:
