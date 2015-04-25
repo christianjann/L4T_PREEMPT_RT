@@ -25,6 +25,7 @@
 #include <linux/kernel.h>
 #include <linux/vmalloc.h>
 #include <linux/moduleparam.h>
+#include <linux/mm_types.h>
 #include <linux/shrinker.h>
 #include <linux/kthread.h>
 #include <linux/debugfs.h>
