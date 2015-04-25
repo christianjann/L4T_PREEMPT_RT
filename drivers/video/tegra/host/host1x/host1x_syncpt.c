@@ -181,6 +181,6 @@ static const struct nvhost_syncpt_ops host1x_syncpt_ops = {
 	.debug = t20_syncpt_debug,
 	.name = t20_syncpt_name,
 	.mutex_try_lock = syncpt_mutex_try_lock,
-	.mutex_unlock = syncpt_mutex_unlock,
+	._mutex_unlock = syncpt_mutex_unlock,
 	.mutex_owner = syncpt_mutex_owner,
 };

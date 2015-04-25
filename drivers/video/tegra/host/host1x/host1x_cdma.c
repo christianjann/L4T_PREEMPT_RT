@@ -396,7 +396,7 @@ static void cdma_timeout_release_mlocks(struct nvhost_cdma *cdma)
 		if (!(ch_own && owner == chid))
 			continue;
 
-		syncpt_op().mutex_unlock(&dev->syncpt, i);
+		syncpt_op()._mutex_unlock(&dev->syncpt, i);
 		dev_dbg(&dev->dev->dev, "released mlock %d\n", i);
 	}
 
