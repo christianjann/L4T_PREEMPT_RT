@@ -1,0 +1,21 @@
+Hunk #1 FAILED at 279.
+1 out of 1 hunk FAILED -- saving rejects to file arch/arm/mm/fault.c.rej
+Hunk #1 FAILED at 53.
+1 out of 1 hunk FAILED -- saving rejects to file drivers/misc/Makefile.rej
+Hunk #1 FAILED at 373.
+1 out of 1 hunk FAILED -- saving rejects to file include/linux/list.h.rej
+Hunk #1 FAILED at 1254.
+1 out of 1 hunk FAILED -- saving rejects to file include/linux/mm.h.rej
+Hunk #1 FAILED at 75.
+1 out of 2 hunks FAILED -- saving rejects to file init/main.c.rej
+Hunk #2 FAILED at 230.
+1 out of 9 hunks FAILED -- saving rejects to file kernel/fork.c.rej
+Hunk #1 FAILED at 47.
+1 out of 31 hunks FAILED -- saving rejects to file kernel/hrtimer.c.rej
+Hunk #3 FAILED at 164.
+1 out of 14 hunks FAILED -- saving rejects to file kernel/irq/manage.c.rej
+Hunk #5 FAILED at 1126.
+Hunk #46 FAILED at 7457.
+2 out of 47 hunks FAILED -- saving rejects to file kernel/sched/core.c.rej
+Hunk #18 FAILED at 5532.
+1 out of 21 hunks FAILED -- saving rejects to file mm/page_alloc.c.rej
