@@ -93,7 +93,7 @@ static irqreturn_t tegra_lp2wake_interrupt(int irq, void *dev_id)
 
 #define LP2_TIMER_IRQ_ACTION(cpu) {				\
 	.name		= "tmr_lp2wake_cpu" __stringify(cpu),	\
-	.flags		= IRQF_DISABLED,			\
+	.flags		= IRQF_TIMER,			\
 	.handler	= tegra_lp2wake_interrupt,		\
 	.dev_id		= (void*)cpu,				\
 	}
