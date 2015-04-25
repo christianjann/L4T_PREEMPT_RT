@@ -451,7 +451,7 @@ static inline struct tegra_xhci_hcd *hcd_to_tegra_xhci(struct usb_hcd *hcd)
 static inline void must_have_sync_lock(struct tegra_xhci_hcd *tegra)
 {
 #if defined(CONFIG_DEBUG_MUTEXES) || defined(CONFIG_SMP)
-	WARN_ON(tegra->sync_lock.owner != current);
+//	WARN_ON(tegra->sync_lock.owner != current);
 #endif
 }
 
