@@ -1,0 +1,5 @@
+config NV_SENSORHUB
+	tristate "Line discipline for Sensorhub"
+	depends on TTY
+	help
+		TTY line discipline for sensorhub stream

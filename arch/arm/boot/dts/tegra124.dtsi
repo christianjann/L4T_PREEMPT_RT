@@ -1,0 +1,65 @@
+#include <dt-bindings/gpio/tegra-gpio.h>
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/ata/ahci-tegra.h>
+
+/include/ "tegra124-soc.dtsi"
+
+/ {
+	compatible = "nvidia,tegra124";
+	interrupt-parent = <&intc>;
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	mc {
+		compatible = "nvidia,tegra-mc";
+
+		reg-ranges = <9>; /* Per channel. */
+		reg = <0x0 0x70019000 0x0 0x00c>,
+		      <0x0 0x70019050 0x0 0x19c>,
+		      <0x0 0x70019200 0x0 0x024>,
+		      <0x0 0x7001929c 0x0 0x1b8>,
+		      <0x0 0x70019464 0x0 0x198>,
+		      <0x0 0x70019604 0x0 0x3b0>,
+		      <0x0 0x700199bc 0x0 0x020>,
+		      <0x0 0x700199f8 0x0 0x08c>,
+		      <0x0 0x70019ab4 0x0 0x54c>;
+
+		interrupts = <0 77 0x4>;
+		int_count  = <8>;
+		int_mask   = <0x13D40>;
+
+		channels = <1>;
+	};
+
+	intc: interrupt-controller@50041000 {
+		compatible = "arm,cortex-a15-gic";
+		interrupt-controller;
+		#interrupt-cells = <3>;
+		reg = <0x0 0x50041000 0x0 0x1000>,
+		      <0x0 0x50042000 0x0 0x0100>;
+	};
+
+	lic: interrupt-controller@60004000 {
+		compatible = "nvidia,tegra-gic";
+		interrupt-controller;
+		reg = <0x0 0x60004000 0x0 0x40>,
+		      <0x0 0x60004100 0x0 0x40>,
+		      <0x0 0x60004200 0x0 0x40>,
+		      <0x0 0x60004300 0x0 0x40>,
+		      <0x0 0x60004400 0x0 0x40>;
+        };
+
+	timer {
+		compatible = "arm,armv7-timer";
+		interrupts = <1 13 0xf04
+			      1 14 0xf04>;
+	};
+
+	dfll@70110000 {
+			compatible = "nvidia,tegra124-dfll";
+			reg = <0x0 0x70110000 0x0 0x400>;
+			out-clock-name="dfll_cpu";
+			status = "disabled";
+	};
+};

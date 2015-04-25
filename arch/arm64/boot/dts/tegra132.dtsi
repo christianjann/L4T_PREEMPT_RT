@@ -1,0 +1,72 @@
+#include <dt-bindings/gpio/tegra-gpio.h>
+#include <dt-bindings/input/input.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+
+/include/ "denver.dtsi"
+/include/ "tegra124-soc.dtsi"
+
+/ {
+	compatible = "nvidia,tegra132";
+	interrupt-parent = <&intc>;
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	cpus {
+		#address-cells = <2>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "nvidia,denver", "arm,armv8";
+			reg = <0x0 0x0>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x8000fff8>;
+			power-states = <&power_states>;
+		};
+
+		cpu@1 {
+			device_type = "cpu";
+			compatible = "nvidia,denver", "arm,armv8";
+			reg = <0x0 0x1>;
+			enable-method = "spin-table";
+			cpu-release-addr = <0x0 0x8000fff8>;
+			power-states = <&power_states>;
+		};
+	};
+
+	intc: interrupt-controller {
+		compatible = "arm,cortex-a15-gic";
+		reg = <0x0 0x50041000 0x0 0x1000
+		       0x0 0x50042000 0x0 0x0100>;
+		interrupt-controller;
+		#interrupt-cells = <3>;
+	};
+
+	lic: interrupt-controller@60004000 {
+		compatible = "nvidia,tegra-gic";
+		interrupt-controller;
+		num-ictrls = <0x5>;
+		reg = <0x0 0x60004000 0x0 0x40>,
+		      <0x0 0x60004100 0x0 0x40>,
+		      <0x0 0x60004200 0x0 0x40>,
+		      <0x0 0x60004300 0x0 0x40>,
+		      <0x0 0x60004400 0x0 0x40>;
+	};
+
+	timer {
+		compatible = "arm,armv8-timer";
+		interrupts = <1 13 0xff01>,
+			     <1 14 0xff01>,
+			     <1 11 0xff01>,
+			     <1 10 0xff01>;
+		clock-frequency = <12000000>;
+	};
+
+	dfll@70040084 {
+		compatible = "nvidia,tegra132-dfll";
+		reg = <0x0 0x70040084 0x0 0x40>,
+		      <0x0 0x70110000 0x0 0x400>;
+		out-clock-name="dfll_cpu";
+		status = "disabled";
+	};
+};
