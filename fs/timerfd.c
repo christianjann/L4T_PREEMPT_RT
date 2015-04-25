@@ -346,7 +346,7 @@ SYSCALL_DEFINE2(timerfd_create, int, clockid, int, flags)
 	return ufd;
 }
 
-static int do_timerfd_settime(int ufd, int flags, 
+static int do_timerfd_settime(int ufd, int flags,
 		const struct itimerspec *new,
 		struct itimerspec *old)
 {
@@ -381,7 +381,7 @@ static int do_timerfd_settime(int ufd, int flags,
 				break;
 		}
 		spin_unlock_irq(&ctx->wqh.lock);
-		hrtimer_wait_for_timer(&ctx->tmr);
+		hrtimer_wait_for_timer(&ctx->t.tmr);
 	}
 
 	/*
