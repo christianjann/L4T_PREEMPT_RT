@@ -1366,12 +1366,12 @@ static void nvi_aux_dbg(struct inv_gyro_state_s *inf, char *tag, int val)
 			p->ext_data_offset, p->enable, p->fifo_en, p->hw_do);
 	}
 	a = &inf->aux;
-	pr_info("AUX: EN=%x GE=%x MD=%x GD=%lu DN=%u BE=%x BL=%d MX=%d\n",
+	/*pr_info("AUX: EN=%x GE=%x MD=%x GD=%lu DN=%u BE=%x BL=%d MX=%d\n",
 		a->enable, (bool)(inf->hw.user_ctrl & BIT_I2C_MST_EN),
 		(inf->hw.i2c_slv4_ctrl & BITS_I2C_MST_DLY),
 		inf->sample_delay_us, a->ext_data_n,
 		(inf->hw.int_pin_cfg & BIT_BYPASS_EN), a->bypass_lock,
-		atomic_read(&inf->mutex.count));
+		atomic_read(&inf->mutex.count));*/
 }
 
 static void nvi_aux_read(struct inv_gyro_state_s *inf)
